@@ -29,21 +29,6 @@ The game displays a visual progression of the hangman in stages as lives are los
 Starting with a blank gallows.
 Incremental drawing as incorrect guesses are made.
 Complete hangman figure if all lives are lost.
-# Example Output
-_ _ _ _ _ _
-********** You have 6/6 lives left.************
-Guess a letter: a
-_ a _ a _ _
-********** You have 5/6 lives left.************
-Guess a letter: b
-your guess is wrong. You lost a life.
-  +---+
-  |   |
-  O   |
- /|\  |
- /    |
-      |
-=========
 # Requirements
 Python 3.x
 This game can be run in any Python IDE or from the command line.
