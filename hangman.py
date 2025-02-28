@@ -2,11 +2,11 @@ banner = '''
  _                                             
 | |                                            
 | |__   __ _ _ __   __ _ _ __ ___   __ _ _ __  
-| '_ \ / _` | '_ \ / _` | '_ ` _ \ / _` | '_ \ 
-| | | | (_| | | | | (_| | | | | | | (_| | | | |
-|_| |_|\__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|
+| '_ \ / ` | ' \ / ` | ' ` _ \ / ` | ' \ 
+| | | | (| | | | | (| | | | | | | (_| | | | |
+|| ||\,|| ||\, || || ||\,|| |_|
                     __/ |                      
-                   |___/  
+                   |_/  
 '''
 print(banner)
 
@@ -85,7 +85,7 @@ correct_letters = []
 lives = 6
 
 while not game_over:
-    print(f"********** You have {lives}/6 lifes left.************")
+    print(f"********** You have {lives}/6 lifes left.")
     guess = input("Guess a letter: ").lower()
 
     if guess in correct_letters:
