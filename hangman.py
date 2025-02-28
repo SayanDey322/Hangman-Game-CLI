@@ -1,118 +1,37 @@
-banner = '''
- _                                             
-| |                                            
-| |__   __ _ _ __   __ _ _ __ ___   __ _ _ __  
-| '_ \ / ` | ' \ / ` | ' ` _ \ / ` | ' \ 
-| | | | (| | | | | (| | | | | | | (_| | | | |
-|| ||\,|| ||\, || || ||\,|| |_|
-                    __/ |                      
-                   |_/  
-'''
-print(banner)
-
-wordlist = ["mango", "apple", "orange", "pineapple", "banana"]
-
-stages = ['''
-  +---+
-  |   |
-      |
-      |
-      |
-      |
-=========
-''', '''
-  +---+
-  |   |
-  O   |
-      |
-      |
-      |
-=========
-''', '''
-  +---+
-  |   |
-  O   |
-  |   |
-      |
-      |
-=========
-''', '''
-  +---+
-  |   |
-  O   |
- /|   |
-      |
-      |
-=========
-''', '''
-  +---+
-  |   |
-  O   |
- /|\  |
-      |
-      |
-=========
-''', '''
-  +---+
-  |   |
-  O   |
- /|\  |
- /    |
-      |
-=========
-''', '''
-  +---+
-  |   |
-  O   |
- /|\  |
- / \  |
-      |
-=========
-''']
-
 import random
-word = random.choice(wordlist)
-# print(word)
-list = [char for char in word]
 
-placeholder = ""
-for i in range(0, len(list)):
-    placeholder += "_"
-print(placeholder)
-
-game_over = False
-correct_letters = []
+from logo import hangman_logo
+from art import stages
+from word import word_list
+print("Welcome to the game:)")
+chosen_word = random.choice(word_list)
+print(f"solution is {chosen_word}")
 lives = 6
+display = []
+for some in chosen_word:
+    display += ' '
 
-while not game_over:
-    print(f"********** You have {lives}/6 lifes left.")
-    guess = input("Guess a letter: ").lower()
+while ' ' in display :
+    guess = str(input("Guess a letter: ").lower())
 
-    if guess in correct_letters:
-        print("You've already guessed this letter.")
+    if guess in display:
+        print(f"You've already guessed {guess}")
         continue
-
-    display = ""
-    for letter in list:
-        if letter == guess:
-            display += guess
-            correct_letters.append(guess)
-        elif letter in correct_letters:
-            display += letter
-        else:
-            display += "_"
-    print(display)
-
-    if guess not in word:
+    elif guess in chosen_word:
+        for position in range(len(chosen_word)):
+            letter = chosen_word[position]
+            if guess == letter:
+                display[position] = guess
+                print("You choose the correct letter!!")
+    else :
+        print(f"You gussed {guess},that's not in word,you lose a life.")
         lives -= 1
-        print("your guess is wrong. You lost a life.")
-
+        if lives != 0:
+            print(stages[lives])
         if lives == 0:
-            game_over = True
-            print("You've lost. The word was:", word)
-
-    print(stages[6 -lives])
-
-    if "_" not in display:
-        game_over = True
-        print("Congratulations! You've guessed the right word:", word)
+            break
+    print(display)
+if lives == 0:
+    print("You lose..")
+else:
+    print("You Win:)")
